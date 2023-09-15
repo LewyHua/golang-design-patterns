@@ -16,10 +16,10 @@ Golang实现的设计模式Design Patterns
 
 ## 设计模式
 ### 创建型模式（Creational Patterns）
-> 这些模式关注对象的创建机制，帮助我们有效地创建和管理对象实例。 
-- 单例模式（Singleton Pattern）
+> 这些模式关注对象的创建机制，帮助我们有效地创建和管理对象实例。
 - 工厂方法模式（Factory Method Pattern）
 - 抽象工厂模式（Abstract Factory Pattern）
+- 单例模式（Singleton Pattern）
 - 建造者模式（Builder Pattern）
 - 原型模式（Prototype Pattern）
 
