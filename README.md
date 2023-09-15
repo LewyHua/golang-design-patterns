@@ -5,13 +5,13 @@ Golang实现的设计模式Design Patterns
 > 设计原则是指在软件设计中的一组通用准则和指导原则，它们有助于编写高质量、可维护和可扩展的代码。
 > 设计模式是实现设计原则的具体方式。
 
-- 单一职责原则（Single Responsibility Principle - SRP）
-- 开放封闭原则（Open-Closed Principle - OCP）
-- 里氏替换原则（Liskov Substitution Principle - LSP）
-- 依赖倒置原则（Dependency Inversion Principle - DIP）
-- 迪米特法则（Law of Demeter - LoD）
-- 接口隔离原则（Interface Segregation Principle - ISP）
-- 合成复用原则（Composite Reuse Principle - CRP）
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/single_responsibility_principle/srp.go">单一职责原则（Single Responsibility Principle - SRP）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/open_closed_principle/ocp.go">开放封闭原则（Open-Closed Principle - OCP）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/liskov_substitution_principle/lsp.go">里氏替换原则（Liskov Substitution Principle - LSP）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/dependency_inversion_principle/dip.go">依赖倒置原则（Dependency Inversion Principle - DIP）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/law_of_demeter/lod.go">迪米特法则（Law of Demeter - LoD）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/interface_segregation_principle/isp.go">接口隔离原则（Interface Segregation Principle - ISP）</a>
+- <a href="https://github.com/LewyHua/golang-design-patterns/blob/main/design_principles/composite_reuse_principle/crp.go">合成复用原则（Composite Reuse Principle - CRP）</a>
 
 
 ## 设计模式
