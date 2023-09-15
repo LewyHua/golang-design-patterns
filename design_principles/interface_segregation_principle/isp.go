@@ -3,66 +3,48 @@ package main
 import "fmt"
 
 /*
-依赖倒置原则（Dependency Inversion Principle，简称DIP）
-它强调高层模块不应该依赖于低层模块，它们都应该依赖于抽象。
-同时，抽象不应该依赖于具体细节，具体细节应该依赖于抽象。
-这一原则有助于减少模块之间的紧耦合，提高了代码的灵活性和可维护性。
+接口隔离原则（Interface Segregation Principle，简称ISP）是SOLID原则中的一项，
+它强调客户端不应该依赖于它不需要的接口。
+具体来说，接口隔离原则要求将大型接口拆分为多个更小的、特定于客户端的接口，以减少不必要的依赖和复杂性。
 */
+
+type Shape interface {
+	Render()
+	Move(x, y int)
+}
+
+type Rectangle struct {
+	// 矩形的属性
+}
+
+func (r *Rectangle) Render() {
+	fmt.Println("渲染矩形")
+}
+
+func (r *Rectangle) Move(x, y int) {
+	fmt.Printf("移动矩形到坐标 (%d, %d)\n", x, y)
+}
 
 /*
-在下面的示例中，我们定义了一个 Notification 接口，然后实现了两个具体的通知类 EmailNotification 和 SMSNotification，它们都实现了 Notification 接口。
-然后，我们有一个 App 类，它包含一个 Notification 接口的实例。
-通过构造函数注入不同的通知方式，我们可以轻松地切换通知方式而不需要修改 App 类的代码，这是依赖倒置原则的体现。
-这种方式提高了代码的可扩展性和可维护性，同时减少了高层模块和低层模块之间的直接依赖。
+在上面的代码中，我们定义了一个通用的 Shape 接口，它包含了 Render 和 Move 两个方法。
+然后，我们实现了一个矩形类型 Rectangle，它实现了 Shape 接口的方法。
+然而，问题出现了，如果我们添加了一个新的形状类型，比如圆形，但它不需要移动操作，那么按照目前的设计，
+我们还是需要实现 Move 方法，这违反了接口隔离原则。
+为了改进这个设计，我们可以拆分 Shape 接口为两个更小的接口：Renderer 和 Mover，以满足不同形状的需求
 */
 
-// Notification 定义一个抽象的 Notification 接口
-type Notification interface {
-	Send(message string)
+type Renderer interface {
+	Render()
 }
 
-// EmailNotification 实现了 Notification 接口
-type EmailNotification struct{}
-
-func (n *EmailNotification) Send(message string) {
-	fmt.Printf("通过电子邮件发送消息：%s\n", message)
+type Mover interface {
+	Move(x, y int)
 }
 
-// SMSNotification 实现了 Notification 接口
-type SMSNotification struct{}
-
-func (n *SMSNotification) Send(message string) {
-	fmt.Printf("通过短信发送消息：%s\n", message)
+type Circle struct {
+	// 圆形的属性
 }
 
-// App 包含一个 Notification 接口的实例
-type App struct {
-	notifier Notification
-}
-
-// NewApp 构造函数接受一个 Notification 接口的实例
-func NewApp(notifier Notification) *App {
-	return &App{
-		notifier: notifier,
-	}
-}
-
-// SendMessage 方法使用依赖注入的方式发送消息
-func (a *App) SendMessage(message string) {
-	a.notifier.Send(message)
-}
-
-func main() {
-	emailNotifier := &EmailNotification{}
-	smsNotifier := &SMSNotification{}
-
-	// 创建 App 实例，注入 EmailNotification 依赖
-	app1 := NewApp(emailNotifier)
-	app1.SendMessage("Hello, World!")
-
-	// 创建 App 实例，注入 SMSNotification 依赖
-	app2 := NewApp(smsNotifier)
-	app2.SendMessage("Hi there!")
-
-	// 无需修改 App 类的代码，可以轻松切换不同的通知方式
+func (c *Circle) Render() {
+	fmt.Println("渲染圆形")
 }
