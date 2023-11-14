@@ -28,7 +28,6 @@ func NewInstance() *singleton {
 
 func TestConcurrentGetInstance() {
 	const numRoutines = 50
-
 	var wg sync.WaitGroup
 	instances := make([]*singleton, numRoutines)
 
@@ -49,4 +48,5 @@ func TestConcurrentGetInstance() {
 			fmt.Printf("Instances at index %d and index 0 are not the same\n", i)
 		}
 	}
+	fmt.Println("ok")
 }

@@ -32,26 +32,25 @@ func NewInstance() *singleton {
 }
 
 func TestConcurrentGetInstance() {
-	const numRoutines = 50
-
+	const testTimes = 50
 	var wg sync.WaitGroup
-	instances := make([]*singleton, numRoutines)
-
-	for i := 0; i < numRoutines; i++ {
+	instances := make([]*singleton, testTimes)
+	for i := 0; i < testTimes; i++ {
 		wg.Add(1)
 		go func(index int) {
 			defer wg.Done()
 			instances[index] = NewInstance()
 		}(i)
 	}
-
 	wg.Wait()
 
-	// 检查所有实例是否相同
 	baseInstance := instances[0]
-	for i := 1; i < numRoutines; i++ {
+	for i := 1; i < len(instances); i++ {
 		if instances[i] != baseInstance {
-			fmt.Printf("Instances at index %d and index 0 are not the same\n", i)
+			fmt.Printf("not the same\n")
 		}
 	}
+
+	fmt.Println("ok")
+
 }

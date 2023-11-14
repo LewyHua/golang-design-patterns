@@ -19,11 +19,13 @@ func (s *singleton) GetName() string {
 	return s.name
 }
 
+//if atomic.LoadUint32(&o.done) == 0 和o.doSlow(f)俩也不是原子呀，只有第一句是原子
+
 var instance *singleton
 
 func NewInstance() *singleton {
 	once.Do(func() {
-		instance = new(singleton)
+		instance = &singleton{}
 	})
 
 	return instance
