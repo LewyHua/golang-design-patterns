@@ -48,3 +48,7 @@ func ShowArticle(article *Article) {
 	fmt.Println("Content:")
 	fmt.Println(article.Content)
 }
+
+func main() {
+
+}
